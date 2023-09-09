@@ -1,0 +1,27 @@
+import json
+import binascii
+import boto3
+
+
+def lambda_handler(event, context):
+    print(event)
+    for record in event['Records']:
+        decoded_data=binascii.a2b_base64(record['kinesis']['data'])
+        data=json.loads(decoded_data)
+        print(type(data))
+        print(data)
+        print(data['ad_id'],data['user_id'],data['click_timestamp'])
+        
+    dynamodb = boto3.resource('dynamodb')
+    table=dynamodb.Table('adclick_kinesis')
+    
+    item = {
+        'ad_id' : data['ad_id'],
+        'user_id': data['user_id'],
+        'click_timestamp' : data['click_timestamp'],
+        'platform':data['platform'],
+        'location': data['location']
+    }
+    
+    table.put_item(Item=item)
+        
