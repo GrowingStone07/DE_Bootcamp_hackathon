@@ -23,7 +23,7 @@ Refer this link to get sample data - [Data Sources](https://github.com/GrowingSt
 
 ### Implementation- Data Flow
 1. Used 2 lambda functions as Producer to generate Mock Data and pushed into Kinesis streams
-   (i)	Lambda producer code to generate Ad Click Stream
-   (ii)	Lambda producer code to generate Ad Conversions Stream
+   - Lambda producer code to generate Ad Click Stream
+   - Lambda producer code to generate Ad Conversions Stream
 
 
