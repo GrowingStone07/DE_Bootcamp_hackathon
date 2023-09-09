@@ -1,11 +1,13 @@
-1) SELECT
+1) Click-Through Rate (CTR) using click counts
+SELECT
     ad_id,
     (count(click_timestamp) * 100.0 / (count(ad_id)) AS ctr
 FROM
    Ad Click Stream 
 group by ad_id ;
 
-2) SELECT
+2) Conversion Rate based on clicks leading to conversions
+SELECT
     c.ad_id,
     (COUNT(conversion_timestamp) * 100.0 / COUNT(click_timestamp)) AS conversion_rate
 FROM
@@ -16,14 +18,16 @@ GROUP BY
     c.ad_id;
 
 
-3)SELECT ad_id ,
+3) Average Revenue Per Conversion
+SELECT ad_id ,
     SUM(revenue) / COUNT(conversion_timestamp) AS avg_Revenue
 FROM
     Ad Conversions Stream
 group by ad_id ;
 
 
-4) SELECT
+4) Conversion Latency (time between a click and its resultant conversion).
+SELECT
     c.ad_id,
     AVG(TIMESTAMPDIFF(MINUTE, c.click_timestamp, co.conversion_timestamp)) AS avg_conversion_latency_MINUTE
 FROM
@@ -33,7 +37,8 @@ JOIN
 GROUP BY
     c.ad_id;
 
-5)SELECT
+5) Trending Campaign
+SELECT
     a.ad_id,co.campaign,
     count(conversion_timestamp) AS total_conversions
 FROM
