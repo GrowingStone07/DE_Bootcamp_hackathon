@@ -20,10 +20,18 @@ Refer this link to get sample data - [Data Sources](https://github.com/GrowingSt
 - Grafana
 
 ### Architecture Diagram
+![Architecture Diuagram](https://myoctocat.com/assets/images/base-octocat.svg)
 
 ### Implementation- Data Flow
 1. Used 2 lambda functions as Producer to generate Mock Data and pushed into Kinesis streams
    - Lambda producer code to generate Ad Click Stream
    - Lambda producer code to generate Ad Conversions Stream
+2. Used lambda function as consumer code to consume data from Kinesis stream.
+3. DLQ (Dead letter Queue) is attached to Lambda Consumer to store data which are arriving late.
+4. From lambda consumer, data is ingested into Glue pipelines
+5. In glue pipeline, we are joining streaming data with Dimension tables
+6. The joined data is stored into Redshift(Data Warehouse) and DynamoDB(NoSQL).
+7. Glue is attached with SNS(Simple Notification Service) to get notified if glue job fails.
+8. Then we are connectig DynamoDB with Graphana to perform real-time dashboarding.
 
 
