@@ -10,6 +10,20 @@ Refer this link to get sample data - [Data Sources](https://github.com/GrowingSt
 - Easy-Medium level Python Knowledge
 - Some basic knowledge of various AWS services (related to data engineering)
 
+### Technologies Used
+- Python Language
+- Lambda Function
+- Kinesis Streams
+- Dynamo DB
+- Redshift
+- Glue Catalog and Glue Crawler
+- Grafana
+
 ### Architecture Diagram
+
+### Implementation- Data Flow
+1. Used 2 lambda functions as Producer to generate Mock Data and pushed into Kinesis streams
+   (i)	Lambda producer code to generate Ad Click Stream
+   (ii)	Lambda producer code to generate Ad Conversions Stream
 
 
