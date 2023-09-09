@@ -32,6 +32,6 @@ Refer this link to get sample data - [Data Sources](https://github.com/GrowingSt
 5. In glue pipeline, we are joining streaming data with Dimension tables
 6. The joined data is stored into Redshift(Data Warehouse) and DynamoDB(NoSQL).
 7. Glue is attached with SNS(Simple Notification Service) to get notified if glue job fails.
-8. Then we are connectig DynamoDB with Graphana to perform real-time dashboarding, you can find the queries we used for analysis [here](https://github.com/GrowingStone07/DE_Bootcamp_hackathon/blob/f91db72a61a3d107f447c96e668e5f1a39b796cf/Architecture.PNG)
+8. Then we are connectig DynamoDB with Graphana to perform real-time dashboarding, you can find the queries we used for analysis [here](https://github.com/GrowingStone07/DE_Bootcamp_hackathon/blob/4ffc00cd137f43444c0a9fb3598507912dba7024/hackathon_queries.txt)
 
 
