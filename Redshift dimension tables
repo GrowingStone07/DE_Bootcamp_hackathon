@@ -1,0 +1,32 @@
+CREATE TABLE adclick.campaign(
+    ad_id int ENCODE lzo,
+    campaign VARCHAR(255) ENCODE lzo,
+    product VARCHAR(255) ENCODE lzo,
+    target_start_date DATE ENCODE bytedict,          
+    target_end_date DATE ENCODE bytedict
+);
+
+
+COPY adclick.campaign
+FROM 's3://hackathon-gds-s3/campaign.csv'
+IAM_ROLE 'arn:aws:iam::124597937517:role/service-role/AmazonRedshift-CommandsAccessRole-20230909T134654'
+DELIMITER ','
+IGNOREHEADER 1
+REGION 'us-east-1'
+
+
+
+CREATE TABLE adclick.user(
+    
+    user_id VARCHAR(255) ENCODE lzo,
+    age int ENCODE lzo,
+    gender VARCHAR(20) ENCODE lzo,
+    interests VARCHAR(255) ENCODE lzo
+);
+
+COPY adclick.user
+FROM 's3://hackathon-gds-s3/user.csv'
+IAM_ROLE 'arn:aws:iam::124597937517:role/service-role/AmazonRedshift-CommandsAccessRole-20230909T134654'
+DELIMITER ','
+IGNOREHEADER 1
+REGION 'us-east-1'
