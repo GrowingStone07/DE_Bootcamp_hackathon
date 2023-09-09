@@ -20,7 +20,7 @@ Refer this link to get sample data - [Data Sources](https://github.com/GrowingSt
 - Grafana
 
 ### Architecture Diagram
-![Architecture Diuagram](https://myoctocat.com/assets/images/base-octocat.svg)
+![Architecture Diuagram](https://github.com/GrowingStone07/DE_Bootcamp_hackathon/blob/f91db72a61a3d107f447c96e668e5f1a39b796cf/Architecture.PNG)
 
 ### Implementation- Data Flow
 1. Used 2 lambda functions as Producer to generate Mock Data and pushed into Kinesis streams
@@ -32,6 +32,6 @@ Refer this link to get sample data - [Data Sources](https://github.com/GrowingSt
 5. In glue pipeline, we are joining streaming data with Dimension tables
 6. The joined data is stored into Redshift(Data Warehouse) and DynamoDB(NoSQL).
 7. Glue is attached with SNS(Simple Notification Service) to get notified if glue job fails.
-8. Then we are connectig DynamoDB with Graphana to perform real-time dashboarding.
+8. Then we are connectig DynamoDB with Graphana to perform real-time dashboarding, you can find the queries we used for analysis [here](https://github.com/GrowingStone07/DE_Bootcamp_hackathon/blob/f91db72a61a3d107f447c96e668e5f1a39b796cf/Architecture.PNG)
 
 
