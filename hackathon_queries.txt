@@ -1,0 +1,50 @@
+1) SELECT
+    ad_id,
+    (count(click_timestamp) * 100.0 / (count(ad_id)) AS ctr
+FROM
+   Ad Click Stream 
+group by ad_id ;
+
+2) SELECT
+    c.ad_id,
+    (COUNT(conversion_timestamp) * 100.0 / COUNT(click_timestamp)) AS conversion_rate
+FROM
+    Ad Click Stream as c
+LEFT JOIN
+    conversions con ON c.ad_id = con.ad_id
+GROUP BY
+    c.ad_id;
+
+
+3)SELECT ad_id ,
+    SUM(revenue) / COUNT(conversion_timestamp) AS avg_Revenue
+FROM
+    Ad Conversions Stream
+group by ad_id ;
+
+
+4) SELECT
+    c.ad_id,
+    AVG(TIMESTAMPDIFF(MINUTE, c.click_timestamp, co.conversion_timestamp)) AS avg_conversion_latency_MINUTE
+FROM
+    clicks c
+JOIN
+    conversions co ON c.ad_id = co.ad_id
+GROUP BY
+    c.ad_id;
+
+5)SELECT
+    a.ad_id,co.campaign,
+    count(conversion_timestamp) AS total_conversions
+FROM
+    Ad Conversions Stream as a
+Inner JOIN
+    Campaigns as co ON a.ad_id = co.ad_id
+GROUP BY
+    a.ad_id
+ORDER BY
+    total_conversions DESC;
+
+
+
+
