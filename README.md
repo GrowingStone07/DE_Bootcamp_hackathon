@@ -20,25 +20,29 @@ Refer this link to get sample data - [Data Sources](https://github.com/GrowingSt
 - Grafana
 
 ### Architecture Diagram
-![Architecture Diuagram](https://github.com/GrowingStone07/DE_Bootcamp_hackathon/blob/f91db72a61a3d107f447c96e668e5f1a39b796cf/Architecture.PNG)
+![Architecture Diuagram](https://github.com/GrowingStone07/DE_Bootcamp_hackathon/blob/4a1b2689df1ecdb2c8398e369bd0e566adc8b7a7/Architecture1.PNG)
 
 ### Implementation- Data Flow
 1. Used 2 lambda functions as Producer to generate Mock Data and pushed into Kinesis streams
    - Lambda producer code to generate Ad Click Stream
    - Lambda producer code to generate Ad Conversions Stream
-2. Used lambda function as consumer code to consume data from Kinesis stream.
-3. DLQ (Dead letter Queue) is attached to Lambda Consumer to store data which are arriving late.
-4. From lambda consumer, data is ingested into Glue pipelines
-5. In glue pipeline, we are joining streaming data with Dimension tables
+2. Used 2 kinesis Streams to ingest streams from produer code
+   - kinesis Stream for Ad Click Stream
+   - kinesis Stream for for Ad Conversions Stream
+3. Used 2 lambda functions as Consumers to consume streams from Kinesis
+   - Lambda consumer code to consume data from Kinesis stream
+   - Lambda producer code to consume data from Kinesis stream
+5. From lambda consumer, data is ingested into Glue pipelines
+5. In glue pipeline, we are joining streaming data with Dimension tables in Redshift
 6. The joined data is stored into Redshift(Data Warehouse) and DynamoDB(NoSQL).
 7. Glue is attached with SNS(Simple Notification Service) to get notified if glue job fails.
-8. Then we are connectig DynamoDB with Graphana to perform real-time dashboarding, you can find the queries we used for analysis [here](https://github.com/GrowingStone07/DE_Bootcamp_hackathon/blob/4ffc00cd137f43444c0a9fb3598507912dba7024/hackathon_queries.txt)
+8. Then we are connecting Redshift with Graphana to perform dashboarding, you can find the queries we used for analysis [here](https://github.com/GrowingStone07/DE_Bootcamp_hackathon/blob/4ffc00cd137f43444c0a9fb3598507912dba7024/hackathon_queries.txt)
 
 ### Step-By-Step Excecution
 1. Create mentioned 2 dimension tables in Redshift
 2. Run both lambda producer code to generate Ad-click stream and Ad-Conversion stream
 3. Check Kinesis stream whether data is arrived or not
-4. Run lambda consumer code to consume the data from Kinesis stream.
+4. Run both lambda consumer code to consume the data from Kinesis stream.
 5. Trigger the glue job to consume data from Lambda Consumer
 6. Glue job will perform joining the stream data with dimension tables present in Redshift and will put the joined data into Redshift and DynamoDB
 7. DynamoDB is connected to Graphana for dashboarding, which will show real-time insights on refresh
