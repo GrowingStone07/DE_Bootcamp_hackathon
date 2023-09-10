@@ -1,0 +1,30 @@
+Hackathon
+
+
+1. Objective Develop a real-time data processing pipeline to ingest, process, and visualize ad data from the click and conversion streams
+2. Join the result data with existing dimensional data to derive actionable insights.
+3. Data Sources 
+	a. Stream 1: Ad Click Stream --> data of user when he is clicking the ads with the details of the application.
+	b. Stream 2: Ad Conversions Stream --> data of a user when he is purchasing that product along with the revenue and product details.
+	c. Campaigns (dim table)
+	d. User Demographics(dim table)
+4. Join all the a,b,c,d data as denormalized form.
+5. What we need to calculate?
+	a. Click-Through Rate (CTR) --> Total cliks for a perticular add/total adds genated through mock data
+	b. Conversion Rate based on clicks leading to 	conversions--> counT(click_timestamp) for an 	ad_id/count(conversion_timestamp) group by ad_id
+	c. Average Revenue Per Conversion --> sum(revenue) for 	each ad_id from Stream 2 / total count for that ad_id from stream2
+	d. Conversion Latency (time between a click and its 	resultant conversion). --> Time difference between conversion_timestamp and click_timestamp.
+	e. Trending Campaign : count(*) of conversion / count(*) of ad-click stream group by ad_id. This value will decide the trend. Compare this value with other two values and make the trend accordingly.
+6. Bonus:
+	a. Present the real-time metrics on a dashboard. --> Kibana,Graffana
+	b. Filtering by ad campaign, date range, or platform.
+	Real-time trends of CTR, Conversion Rate, etc.
+	Insights into top-performing ads based on revenue and conversion rates.
+
+Cloud - AWS
+
+	
+
+
+
+
